@@ -6,9 +6,28 @@ const https = require('node:https');
 const axios = require('axios');
 const router = express.Router();
 
-router.get('/all', function (req, res) {
+router.get('/', function (req, res) {
 
   https.get('https://api.restful-api.dev/objects', (result) => {
+    console.log('statusCode:', res.statusCode);
+
+    let data = '';
+    result.on('data', function (chunk) {
+      data += chunk;
+    });
+
+    result.on('end', () => {
+      res.send(JSON.parse(data));
+    });
+  }).on('error', (e) => {
+    console.error(e);
+  });
+
+});
+
+router.get('/:id', function (req, res) {
+
+  https.get('https://api.restful-api.dev/objects?id='+req.params.id, (result) => {
     console.log('statusCode:', res.statusCode);
 
     let data = '';
