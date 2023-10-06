@@ -3,11 +3,9 @@ kind: Deployment
 metadata:
   name: {{APP_NAME}}
   namespace: {{NAME_SPACE}}
-  labels:
-    app: {{APP_NAME}}
 spec:
   replicas: 1
-  selector:
+  matchLabels:
       app: {{APP_NAME}}
   template:
     metadata:
