@@ -4,8 +4,8 @@ metadata:
   name: {{APP_NAME}}
   namespace: {{NAME_SPACE}}
 spec:
-  replicas: 1
-  matchLabels:
+  selector:
+    matchLabels:
       app: {{APP_NAME}}
   template:
     metadata:
